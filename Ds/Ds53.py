@@ -60,7 +60,9 @@
 #         if self.arg.isdigit():
 #             result = [int(i) for i in str(self.arg) if int(i) % 2 == 0]
 #             print(sum(result) * len(str(self.arg)))
-#
+#         elif isinstance(self.arg, int):
+#             result = [int(i) for i in str(self.arg) if int(i) % 2 == 0]
+#             print(sum(result) * len(str(self.arg)))
 #         elif isinstance(self.arg, str):
 #             vowels = []
 #             consonants = []
