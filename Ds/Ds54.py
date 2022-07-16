@@ -49,9 +49,10 @@
 #
 #     @staticmethod
 #     def example():
-#         return 'Пример текста на английском: Meet my family. There are five of us – my parents, my elder brother, my baby sister and me.\n' \
-#                'First, meet my mum and dad, Jane and Michael. My mum enjoys reading and my dad enjoys playing chess ' \
-#                'with my brother Ken. My mum is slim and rather tall.'
+#         return 'Пример текста на английском: Meet my family. There are five of us – my parents, my elder brother, ' \
+#                'my baby sister and me.\n' \
+#                'First, meet my mum and dad, Jane and Michael. My mum enjoys reading and my dad enjoys playing chess' \
+#                ' with my brother Ken. My mum is slim and rather tall.'
 
 
 # Тесты:
