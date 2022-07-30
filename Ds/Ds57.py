@@ -117,7 +117,7 @@ def int_game(player_name: str, count: str):
             cur.execute("SELECT * FROM users")
             result = cur.fetchall()
             print('Топ 3 игрока')
-            [print(*sorted(result, key=lambda el: int(el[2]) and int(el[3]))[_][1:4]) for _ in range(3)]
+            [print(*sorted(result, key=lambda el: (el[2], el[3]))[_][1:4]) for _ in range(3)]
     data_base()
 
 
