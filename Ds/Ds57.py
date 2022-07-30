@@ -50,15 +50,15 @@ def int_game(player_name: str, count: str):
         if number == player_number:
             if count == 1:
                 print(f'Признаю, ты реально крут🤯. Ты сделал {player_count} попыток.')
-                total_time = time.time() - start_time
+                total_time = round((time.time() - start_time), 5)
                 break
             elif count - i == 1:
                 print(f'Я правда переживал, поздравляю, ты справился😤. Ты сделал {player_count} попыток.')
-                total_time = time.time() - start_time
+                total_time = round((time.time() - start_time), 5)
                 break
             else:
                 print(f'Поздравляю, ты победил😀. Ты сделал {player_count} попыток.')
-                total_time = time.time() - start_time
+                total_time = round((time.time() - start_time), 5)
                 break
         elif number < player_number:
             print('-------------------'
@@ -81,7 +81,7 @@ def int_game(player_name: str, count: str):
     else:
         print(f'Ты проиграл😞. А число было {number}. Ты сделал {player_count} попыток.')
         win = False
-        total_time = time.time() - start_time
+        total_time = round((time.time() - start_time), 5)
 
     def data_base():
         with sqlite3.connect('LeaderBoard.db') as con:
@@ -96,13 +96,28 @@ def int_game(player_name: str, count: str):
             if win:
                 cur.execute("""INSERT INTO users (name, score, time) VALUES(?, ?, ?)""",
                             (player_name, player_count, total_time))
-            cur.execute("SELECT * FROM users")
+                # SELECT expressions
+                # FROM tables
+                # [WHERE conditions]
+                # [ORDER BY expression[ASC | DESC]]
+                # LIMIT number_rows[OFFSET offset_value];
+            cur.execute("""SELECT name, score, time
+                        FROM users
+                        ORDER BY score, time ASC
+                        LIMIT 3
+                        """)
+            result = cur.fetchall()
+            print(f'Новая сортировка', result)
+            cur.execute("""SELECT name, score, time
+                        FROM users
+                        ORDER BY score, time ASC
+                        """)
             result = cur.fetchall()
             print(f'Список всех игроков', *result, sep='\n')
             cur.execute("SELECT * FROM users")
             result = cur.fetchall()
             print('Топ 3 игрока')
-            [print(*sorted(result, key=lambda el: int(el[3]) and int(el[2]))[_][1:4]) for _ in range(3)]
+            [print(*sorted(result, key=lambda el: int(el[2]) and int(el[3]))[_][1:4]) for _ in range(3)]
     data_base()
 
 
